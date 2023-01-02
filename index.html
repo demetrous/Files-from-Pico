@@ -1,36 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tom's Hardware Pico W Web Server</title>
+    <style>
+      .block {
+        display: block;
+        width: 100%;
+        border: none;
+        background-color: #04aa6d;
+        padding: 14px 28px;
+        font-size: 32px;
+        cursor: pointer;
+        text-align: center;
+      }
+      .off {
+        background-color: #d8d8d8;
+      }
+      h1 {
+        text-align: center;
+      }
+    </style>
   </head>
   <body>
-    <h1>Tom's Hardware Pico W Web Server</h1>
-    <h2>The Latest News</h2>
-    <img
-      src="https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?cs=srgb&dl=pexels-designecologist-1779487.jpg"
-      ,
-      width="640px"
-      height="427px"
-    />
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla faucibus,
-      odio ac ornare efficitur, nisl nisl ultricies urna, in cursus mauris augue
-      in elit. Nam at rutrum justo. Donec non aliquam sapien, et eleifend felis.
-      Nulla a lorem finibus, condimentum nunc vel, sollicitudin diam. Nulla eget
-      imperdiet diam. Vivamus non elementum neque. Fusce non ultrices enim, a
-      pulvinar est. Sed vitae arcu turpis. Phasellus mollis egestas pretium.
-      Nulla facilisi. Suspendisse posuere porta ante porta tincidunt. Proin
-      lorem est, rutrum a risus id, tempor posuere tellus. Donec sed placerat
-      mauris. Fusce accumsan consequat leo vel pharetra. Mauris enim massa,
-      tincidunt a venenatis vitae, elementum sed lacus. Aliquam libero ipsum,
-      porta ac consectetur eu, efficitur id tellus. Mauris ullamcorper sed
-      sapien eu dapibus. Duis quis pretium lorem. Fusce et risus finibus, luctus
-      nunc a, aliquam augue. Donec ultrices mi at ipsum accumsan malesuada.
-      Mauris sed tempus urna. In nec placerat elit. Sed blandit consectetur
-      libero vitae malesuada.
-    </p>
+    <form action="./lighton">
+      <input type="submit" value="Light on" class="block" />
+    </form>
+    <form action="./lightoff">
+      <input type="submit" value="Light off" class="block off" />
+    </form>
+    <h1>LED is {state}</h1>
+    <h1>Temperature is {temperature}</h1>
   </body>
 </html>
