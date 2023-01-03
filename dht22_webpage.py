@@ -88,7 +88,8 @@ def open_socket(ip):
     # Open a socket
     address = (ip, 80)
     connection = socket.socket()
-    connection.bind(address)
+    connection.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    connection.bind(address) 
     connection.listen(1)
     print(connection)
     return(connection)
