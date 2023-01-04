@@ -1,11 +1,13 @@
 import machine
 import socket
 import math
+import utime as time
 
 from machine import Pin
 from picozero import pico_temp_sensor, pico_led
 from secrets import *
 from do_connect import *
+
 
 #from dht_read import *
 
@@ -76,6 +78,7 @@ def serve(connection):
             state = 'OFF'
             
         sensor.measure()
+        time.sleep(1)
         temperature = sensor.temperature()
         humidity = sensor.humidity()
         
