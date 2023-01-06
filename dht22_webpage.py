@@ -13,7 +13,7 @@ from do_connect import *
 
 import dht
 
-sensor = dht.DHT22(Pin(2)) 
+sensor = dht.DHT22(Pin(27)) 
 
 def webpage(temperature, humidity, state):
     #Template HTML
