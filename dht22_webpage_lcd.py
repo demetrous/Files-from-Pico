@@ -6,6 +6,7 @@ import utime as time
 from machine import Pin
 from picozero import pico_temp_sensor, pico_led
 from do_connect import *
+from lcd_out_methods import *
 
 import dht
 
@@ -77,6 +78,10 @@ def serve(connection):
         time.sleep(1)
         temperature = sensor.temperature()
         humidity = sensor.humidity()
+        
+        print("T:"+str(temperature)+"\n")
+        
+        print_two_rows(temperature, humidity)
         
         html = webpage(temperature, humidity, state)
         client.send('HTTP/1.0 200 OK\r\nContent-type: text/html\r\n\r\n')
