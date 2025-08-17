@@ -237,4 +237,3 @@ def health(_req):
 print("Open: http://{}/  (SSID: {})".format(ip, cur_ssid))
 app.run(host='0.0.0.0', port=HTTP_PORT, debug=False)
 
-
