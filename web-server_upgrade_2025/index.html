@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>Tiny Server - Runs on Tiny Raspberry Pi Pico W</title>
+  <link rel="icon" type="image/x-icon" href="/static/assets/favicon.ico" />
+  <link href="/static/css/styles.css" rel="stylesheet" />
+</head>
+<body id="page-top">
+  <!-- Navigation-->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-success fixed-top" id="mainNav">
+    <div class="container px-4">
+      <a class="navbar-brand" href="#page-top">Tiny Server</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#parking">Parking Assistant</a></li>
+          <li class="nav-item"><a class="nav-link" href="#cooling">Smart Cooling</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header-->
+  <header class="bg-primary bg-image text-white" style="
+    background-image: url('/static/assets/raspberry.jpg');
+    background-size: cover; padding-top: 0; padding-bottom: 0; background-position: center;">
+    <div class="mask" style="background-color: rgba(0, 0, 0, 0.3); padding-top: 16rem; padding-bottom: 12rem;">
+      <div class="container px-4 text-center">
+        <h1 class="fw-bolder" style="text-shadow: 2px 2px 4px #000000;">Hi, I'm a Tiny Server!</h1>
+        <p class="display-6" style="text-shadow: 2px 2px 4px #000000;">You are browsing this website from me now.</p>
+        <a class="btn btn-lg btn-success" style="box-shadow: 4px 4px 11px #00000073;" href="#about">Check what I can do!</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container px-4">
+      <div class="row gx-4 justify-content-center">
+        <div class="col-lg-8">
+          <h2>About the Tiny Server hardware</h2>
+          <p class="lead">The Raspberry Pi Pico series is a range of tiny, fast, and versatile boards built using RP2040.</p>
+          <p class="lead"><strong>Serving from:</strong>
+            <code id="ip">loading…</code> (SSID: <code id="ssid">loading…</code>)
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Parking -->
+  <section class="bg-light" id="parking">
+    <div class="container px-4">
+      <div class="row gx-4 justify-content-center">
+        <div class="col-lg-8">
+          <h2>Parking Assistant</h2>
+          <p class="lead">Green = ideal, Yellow = getting close, Red = too close.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cooling -->
+  <section id="cooling">
+    <div class="container px-4">
+      <div class="row gx-4 justify-content-center">
+        <div class="col-lg-8">
+          <h2>Smart Cooling</h2>
+          <p class="lead">Monitors temperatures and controls ventilation for comfort and efficiency.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-5 bg-dark">
+    <div class="container px-4">
+      <p class="m-0 text-center text-white">Copyright &copy; Dmitrii Karaulanov 2024</p>
+    </div>
+  </footer>
+
+  <!-- Local JS -->
+  <script src="/static/js/bootstrap.bundle.min.js"></script>
+  <script src="/static/js/scripts.js"></script>
+  <script>
+    // Fill IP/SSID from /health and keep the AP “active”
+    function refreshInfo() {
+      fetch('/health', {cache:'no-store'})
+        .then(r => r.json())
+        .then(j => {
+          document.getElementById('ip').textContent = 'http://' + (j.ip || '192.168.4.1') + '/';
+          document.getElementById('ssid').textContent = j.ssid || '';
+        })
+        .catch(()=>{});
+    }
+    refreshInfo();
+    setInterval(refreshInfo, 10000); // also acts as keep-alive
+  </script>
+</body>
+</html>
